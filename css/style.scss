@@ -15,12 +15,13 @@
   }
 
   &:disabled {
-    background-color: #6d818f30;
+    background-color: grey;
     pointer-events: none;
   }
 
   &.remove {
-    background-color: #f81201dd;
+    background-color: #e95f53f8;
+    box-shadow: 5px 0px 5px 0 #000;
   }
 
   &:hover {
@@ -50,6 +51,62 @@ ul {
   list-style-type: none;
 }
 
+.banner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  min-height: 1.5rem;
+  height: max-content;
+  width: 100vw;
+  background-color: #4ac774;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: translateY(0);
+  transition: all 0.3s ease-in-out;
+  z-index: 2;
+
+  p {
+    text-align: center;
+    max-width: 75vw;
+    height: max-content;
+    margin: 1rem 4rem 1rem 0;
+    text-transform: capitalize;
+    font-size: 1.5rem;
+
+    @media (max-width: 576px) {
+      font-size: 1.2rem;
+    }
+  }
+
+  button {
+    @include button();
+    height: 2rem;
+    padding: 0.5rem;
+    justify-self: end;
+    position: absolute;
+    top: 50%;
+    right: 2rem;
+    transform: translate(0, -50%);
+    background: none;
+    color: white;
+    box-shadow: none;
+    border: 2px solid #ffffff;
+    display: flex;
+    align-items: center;
+
+    @media (max-width: 576px) {
+      width: max-content;
+      right: 0.5rem;
+    }
+  }
+  &.hidden {
+    transform: translateY(-110%);
+  }
+}
+
 header {
   display: flex;
   justify-content: center;
@@ -62,7 +119,7 @@ header {
 .container {
   margin: 0 auto;
   padding: 2rem 4rem;
-  max-width: 1024px;
+  max-width: 1200px;
 
   @media (max-width: 576px) {
     padding: 2rem;
@@ -116,14 +173,52 @@ main {
   gap: 20px;
   margin: 20px 0;
 
-  @media (max-width: 568px) {
+  @media (max-width: 768px) {
     grid-template-columns: 1fr;
+  }
+
+  .spinner-container {
+    height: inherit;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &.hidden {
+      display: none;
+    }
+
+    &.show {
+      display: flex;
+    }
+  }
+
+  .spinner {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    border: 3px solid rgba(195, 195, 195, 0.6);
+    border-radius: 50%;
+    border-top-color: #636767;
+    animation: spin 1s ease-in-out infinite;
+    -webkit-animation: spin 1s ease-in-out infinite;
+  }
+
+  @keyframes spin {
+    to {
+      -webkit-transform: rotate(360deg);
+    }
+  }
+  @-webkit-keyframes spin {
+    to {
+      -webkit-transform: rotate(360deg);
+    }
   }
 
   .nomination-container,
   .movies-container {
     background: transparent;
-    padding: 20px;
+    padding: 20px 10px;
     border: none;
     border-radius: 15px;
     width: 100%;
@@ -131,16 +226,25 @@ main {
     box-shadow: 5px 5px 5px 0px grey;
   }
 
-  .movies-container .movie-item {
+  .movie-item {
     display: flex;
     padding: 1rem 0;
     margin: 1rem 0;
     gap: 1rem;
 
+    @media (max-width: 576px) {
+      align-items: center;
+    }
+
     img {
-      height: 120px;
-      width: 120px;
+      height: 100px;
+      width: 90px;
       object-fit: contain;
+
+      @media (max-width: 576px) {
+        height: 80px;
+        width: 60px;
+      }
     }
 
     .movie-content {
@@ -149,10 +253,16 @@ main {
       align-items: center;
       width: 100%;
       gap: 10px;
+
+      @media (max-width: 576px) {
+        flex-direction: column;
+        margin-left: 15px;
+      }
     }
 
     .movie-content-info {
       width: 100%;
+      margin: 5px 0;
     }
 
     button {
@@ -166,12 +276,5 @@ main {
   .nomination-container {
     position: sticky;
     top: 3%;
-  }
-
-  .nomination-container ul li {
-    padding: 5px;
-    margin: 8px 0;
-    border: 1px solid grey;
-    border-radius: 5px;
   }
 }
