@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Shopify internship assessment by Joshua Afekuro"
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
+    <title>The Shoppies</title>
+  </head>
+  <body>
+    <header>
+      <h1 class="main-heading">The Shoppies!</h1>
+      <p class="lead-text">Movie awards for entrepreneurs.</p>
+    </header>
+    <div class="container">
+      <form action="post">
+        <label for="search"> Search a movie</label>
+        <div class="form-input">
+          <input
+            type="search"
+            name="search"
+            id="search"
+            placeholder="Movie title"
+          />
+          <button type="submit" id="submitBtn">Search</button>
+        </div>
+      </form>
+
+      <main>
+        <div class="movies-container">
+          <h3>Results for movie</h3>
+          <p class="movies-result">Search results will show here</p>
+          <ul id="movies-list">
+            <li class="movie-item">
+              <img
+                src="https://m.media-amazon.com/images/M/MV5BNmZkYjQzY2QtNjdkNC00YjkzLTk5NjUtY2MyNDNiYTBhN2M2XkEyXkFqcGdeQXVyMjMwNDgzNjc@._V1_SX300.jpg"
+              />
+              <div class="movie-content">
+                <div class="movie-content-info">
+                  <h3>Creed</h3>
+                  <h4>Drama, Sport</h4>
+                  <p>25 Nov 2015</p>
+                </div>
+                <button>Nominate</button>
+              </div>
+            </li>
+            <li class="movie-item">
+              <img
+                src="https://m.media-amazon.com/images/M/MV5BNmZkYjQzY2QtNjdkNC00YjkzLTk5NjUtY2MyNDNiYTBhN2M2XkEyXkFqcGdeQXVyMjMwNDgzNjc@._V1_SX300.jpg"
+              />
+              <div class="movie-content">
+                <div class="movie-content-info">
+                  <h3>Creed</h3>
+                  <h4>Drama, Sport</h4>
+                  <p>25 Nov 2015</p>
+                </div>
+                <button>Nominate</button>
+              </div>
+            </li>
+            <li class="movie-item">
+              <img
+                src="https://m.media-amazon.com/images/M/MV5BNmZkYjQzY2QtNjdkNC00YjkzLTk5NjUtY2MyNDNiYTBhN2M2XkEyXkFqcGdeQXVyMjMwNDgzNjc@._V1_SX300.jpg"
+              />
+              <div class="movie-content">
+                <div class="movie-content-info">
+                  <h3>Creed</h3>
+                  <h4>Drama, Sport</h4>
+                  <p>25 Nov 2015</p>
+                </div>
+                <button>Nominate</button>
+              </div>
+            </li>
+            <li class="movie-item">
+              <img
+                src="https://m.media-amazon.com/images/M/MV5BNmZkYjQzY2QtNjdkNC00YjkzLTk5NjUtY2MyNDNiYTBhN2M2XkEyXkFqcGdeQXVyMjMwNDgzNjc@._V1_SX300.jpg"
+              />
+              <div class="movie-content">
+                <div class="movie-content-info">
+                  <h3>Creed</h3>
+                  <h4>Drama, Sport</h4>
+                  <p>25 Nov 2015</p>
+                </div>
+                <button>Nominate</button>
+              </div>
+            </li>
+            <li class="movie-item">
+              <img
+                src="https://m.media-amazon.com/images/M/MV5BNmZkYjQzY2QtNjdkNC00YjkzLTk5NjUtY2MyNDNiYTBhN2M2XkEyXkFqcGdeQXVyMjMwNDgzNjc@._V1_SX300.jpg"
+              />
+              <div class="movie-content">
+                <div class="movie-content-info">
+                  <h3>Creed</h3>
+                  <h4>Drama, Sport</h4>
+                  <p>25 Nov 2015</p>
+                </div>
+                <button>Nominate</button>
+              </div>
+            </li>
+            <li class="movie-item">
+              <img
+                src="https://m.media-amazon.com/images/M/MV5BNmZkYjQzY2QtNjdkNC00YjkzLTk5NjUtY2MyNDNiYTBhN2M2XkEyXkFqcGdeQXVyMjMwNDgzNjc@._V1_SX300.jpg"
+              />
+              <div class="movie-content">
+                <div class="movie-content-info">
+                  <h3>Creed</h3>
+                  <h4>Drama, Sport</h4>
+                  <p>25 Nov 2015</p>
+                </div>
+                <button>Nominate</button>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="nomination-container">
+          <h3>Nominations</h3>
+          <ul id="nomination-list">
+            <li>movie nominee</li>
+            <li>movie nominee</li>
+            <li>movie nominee</li>
+          </ul>
+        </div>
+      </main>
+    </div>
+    <script src="index.js"></script>
+  </body>
+</html>
