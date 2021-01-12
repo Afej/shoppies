@@ -31,14 +31,15 @@
 
     <div class="container">
       <!-- serach form -->
-      <form action="post">
+      <form>
         <label for="search"> Search and nominate a movie.</label>
         <div class="form-input">
           <input
-            type="search"
+            type="text"
             name="search"
             id="search"
-            placeholder="Movie title"
+            class=""
+            placeholder="Enter a Movie title"
           />
           <button type="submit" id="submitBtn">Search</button>
         </div>
@@ -47,58 +48,17 @@
       <main>
         <div class="movies-container">
           <h3>Movies List</h3>
-          <p id="movies-info">Search results will show here</p>
+          <p id="movies-info">Search your favourite movies above.</p>
           <div class="spinner-container hidden" id="spinner">
             <div class="spinner"></div>
           </div>
-          <ul id="movies-list">
-            <li class="movie-item">
-              <img
-                src="https://m.media-amazon.com/images/M/MV5BNmZkYjQzY2QtNjdkNC00YjkzLTk5NjUtY2MyNDNiYTBhN2M2XkEyXkFqcGdeQXVyMjMwNDgzNjc@._V1_SX300.jpg"
-              />
-              <div class="movie-content">
-                <div class="movie-content-info">
-                  <h3>Creed</h3>
-                  <h4>Drama, Sport</h4>
-                  <p>25 Nov 2015</p>
-                </div>
-                <button>Nominate</button>
-              </div>
-            </li>
-            <li class="movie-item">
-              <img
-                src="https://m.media-amazon.com/images/M/MV5BNmZkYjQzY2QtNjdkNC00YjkzLTk5NjUtY2MyNDNiYTBhN2M2XkEyXkFqcGdeQXVyMjMwNDgzNjc@._V1_SX300.jpg"
-              />
-              <div class="movie-content">
-                <div class="movie-content-info">
-                  <h3>Creed</h3>
-                  <h4>Drama, Sport</h4>
-                  <p>25 Nov 2015</p>
-                </div>
-                <button disabled>Nominated</button>
-              </div>
-            </li>
-          </ul>
+          <ul id="movies-list"></ul>
         </div>
 
         <div class="nomination-container">
           <h3>Nominations</h3>
-          <p id="nomination-info">Nominees will show here</p>
-          <ul id="nomination-list">
-            <li class="movie-item">
-              <img
-                src="https://m.media-amazon.com/images/M/MV5BNmZkYjQzY2QtNjdkNC00YjkzLTk5NjUtY2MyNDNiYTBhN2M2XkEyXkFqcGdeQXVyMjMwNDgzNjc@._V1_SX300.jpg"
-              />
-              <div class="movie-content">
-                <div class="movie-content-info">
-                  <h3>Creed</h3>
-                  <h4>Drama, Sport</h4>
-                  <p>25 Nov 2015</p>
-                </div>
-                <button class="remove">Remove</button>
-              </div>
-            </li>
-          </ul>
+          <p id="nomination-info">Search movies and add your nominees.</p>
+          <ul id="nomination-list"></ul>
         </div>
       </main>
     </div>

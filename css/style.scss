@@ -21,7 +21,7 @@
 
   &.remove {
     background-color: #e95f53f8;
-    box-shadow: 5px 0px 5px 0 #000;
+    box-shadow: 0px 4px 2px 0 #000;
   }
 
   &:hover {
@@ -147,6 +147,14 @@ form {
     margin-right: 1rem;
     border-radius: 4px;
     border-width: 1px;
+
+    &.error {
+      border: 2px solid red;
+
+      &::placeholder {
+        color: red;
+      }
+    }
   }
 
   button {
@@ -215,10 +223,10 @@ main {
     }
   }
 
-  .nomination-container,
-  .movies-container {
-    background: transparent;
-    padding: 20px 10px;
+  .nomination-container {
+    background: rgb(100, 73, 73);
+    opacity: 0.9;
+    padding: 20px 15px;
     border: none;
     border-radius: 15px;
     width: 100%;
@@ -226,11 +234,33 @@ main {
     box-shadow: 5px 5px 5px 0px grey;
   }
 
+  .movies-container {
+    background: transparent;
+    padding: 20px 15px;
+    border: none;
+    border-radius: 15px;
+    width: 100%;
+    height: max-content;
+    box-shadow: 5px -5px 5px 0px grey;
+  }
+
+  #movies-info,
+  #nomination-info {
+    margin: 8px 0;
+  }
+
   .movie-item {
     display: flex;
     padding: 1rem 0;
     margin: 1rem 0;
     gap: 1rem;
+    transition: all 0.5s ease-in;
+
+    &:hover {
+      border: 2px solid grey;
+      padding: 10px;
+      border-radius: 10px;
+    }
 
     @media (max-width: 576px) {
       align-items: center;
@@ -269,6 +299,7 @@ main {
       @include button();
       padding: 0.7rem;
       background-color: #29658dee;
+      box-shadow: 0px 4px 2px 0 #000;
       color: #fefefe;
     }
   }

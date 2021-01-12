@@ -89,7 +89,7 @@ ul {
 
 .banner button.remove {
   background-color: #e95f53f8;
-  box-shadow: 5px 0px 5px 0 #000;
+  box-shadow: 0px 4px 2px 0 #000;
 }
 
 .banner button:hover {
@@ -154,6 +154,14 @@ form input {
   border-width: 1px;
 }
 
+form input.error {
+  border: 2px solid red;
+}
+
+form input.error::placeholder {
+  color: red;
+}
+
 form button {
   cursor: pointer;
   border: none;
@@ -180,7 +188,7 @@ form button:disabled {
 
 form button.remove {
   background-color: #e95f53f8;
-  box-shadow: 5px 0px 5px 0 #000;
+  box-shadow: 0px 4px 2px 0 #000;
 }
 
 form button:hover {
@@ -250,10 +258,10 @@ main .spinner {
   }
 }
 
-main .nomination-container,
-main .movies-container {
-  background: transparent;
-  padding: 20px 10px;
+main .nomination-container {
+  background: #644949;
+  opacity: 0.9;
+  padding: 20px 15px;
   border: none;
   border-radius: 15px;
   width: 100%;
@@ -261,11 +269,33 @@ main .movies-container {
   box-shadow: 5px 5px 5px 0px grey;
 }
 
+main .movies-container {
+  background: transparent;
+  padding: 20px 15px;
+  border: none;
+  border-radius: 15px;
+  width: 100%;
+  height: max-content;
+  box-shadow: 5px -5px 5px 0px grey;
+}
+
+main #movies-info,
+main #nomination-info {
+  margin: 8px 0;
+}
+
 main .movie-item {
   display: flex;
   padding: 1rem 0;
   margin: 1rem 0;
   gap: 1rem;
+  transition: all 0.5s ease-in;
+}
+
+main .movie-item:hover {
+  border: 2px solid grey;
+  padding: 10px;
+  border-radius: 10px;
 }
 
 @media (max-width: 576px) {
@@ -316,6 +346,7 @@ main .movie-item button {
   box-shadow: 0 1px 1px 0 #000;
   padding: 0.7rem;
   background-color: #29658dee;
+  box-shadow: 0px 4px 2px 0 #000;
   color: #fefefe;
 }
 
@@ -336,7 +367,7 @@ main .movie-item button:disabled {
 
 main .movie-item button.remove {
   background-color: #e95f53f8;
-  box-shadow: 5px 0px 5px 0 #000;
+  box-shadow: 0px 4px 2px 0 #000;
 }
 
 main .movie-item button:hover {
