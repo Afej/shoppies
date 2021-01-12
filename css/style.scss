@@ -177,12 +177,16 @@ form {
 
 main {
   display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 20px;
+  grid-template-columns: 3fr 2fr;
+  gap: 30px;
   margin: 20px 0;
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
+
+    & #nomination-list {
+      display: none;
+    }
   }
 
   .spinner-container {
@@ -224,6 +228,8 @@ main {
   }
 
   .nomination-container {
+    position: sticky;
+    top: 3%;
     background: rgb(100, 73, 73);
     opacity: 0.9;
     padding: 20px 15px;
@@ -232,6 +238,13 @@ main {
     width: 100%;
     height: max-content;
     box-shadow: 5px 5px 5px 0px grey;
+
+    @media (max-width: 768px) {
+      top: 0;
+      grid-row: 1;
+      z-index: 10;
+      opacity: 1;
+    }
   }
 
   .movies-container {
@@ -242,6 +255,10 @@ main {
     width: 100%;
     height: max-content;
     box-shadow: 5px -5px 5px 0px grey;
+
+    @media (max-width: 768px) {
+      grid-row: 2;
+    }
   }
 
   #movies-info,
@@ -287,6 +304,7 @@ main {
       @media (max-width: 576px) {
         flex-direction: column;
         margin-left: 15px;
+        align-items: start;
       }
     }
 
@@ -301,11 +319,11 @@ main {
       background-color: #29658dee;
       box-shadow: 0px 4px 2px 0 #000;
       color: #fefefe;
-    }
-  }
 
-  .nomination-container {
-    position: sticky;
-    top: 3%;
+      @media (max-width: 576px) {
+        padding: 0.5rem;
+        width: 50%;
+      }
+    }
   }
 }

@@ -4,7 +4,7 @@ const closeBannerBtn = document.querySelector("#closeBannerBtn");
 
 const form = document.querySelector("form");
 const search = document.querySelector("#search");
-const submitBtn = document.querySelector("#submitBtn");
+// const submitBtn = document.querySelector("#submitBtn");
 
 const spinner = document.querySelector("#spinner");
 const moviesInfo = document.querySelector("#movies-info");
@@ -16,14 +16,82 @@ const nomineesContainer = document.querySelector(".nominees-container");
 
 let movieNominees = JSON.parse(localStorage.getItem("movieNominees")) || [];
 
+const updateNomineesLeft = () => {
+  if (movieNominees.length) {
+    nominationInfo.innerText = `You have ${
+      5 - movieNominees.length
+    } nomination${5 - movieNominees.length !== 1 ? "s" : ""} left.`;
+
+    if (movieNominees.length === 5) {
+      alert("You have selected five movies. Thank you!");
+      // showBanner("You have selected five movies. Thank you!");
+    }
+  } else {
+    nominationInfo.innerText = "Search movies and add your nominations.";
+  }
+};
+
+const fillNominationList = () => {
+  let html = ``;
+  updateNomineesLeft();
+
+  movieNominees.forEach((movie) => {
+    const { title, imdbId, year, type, imgSrc } = movie;
+
+    html += `
+    <li class="movie-item" data-title="${title}" data-year="${year}" data-imdb-id="${imdbId}" data-type="${type}">
+    ${imgSrc ? `<img src="${imgSrc}" alt="${title}" />` : ""}
+      <div class="movie-content">
+        <div class="movie-content-info">
+        <h3>${title}</h3>
+          <h4>${type}</h4>
+          <p>${year}</p>
+        </div>
+        <button onclick="removeNomination(this)" class="remove">Remove</button>
+      </div>
+    </li> 
+    `;
+  });
+
+  nominationList.innerHTML = html;
+};
+
+fillNominationList();
+
+const removeNomination = (e) => {
+  // hideBanner();
+  const movie = e.closest(".movie-item");
+  const { imdbId } = movie.dataset;
+
+  movieNominees = movieNominees.filter((nominee) => nominee.imdbId !== imdbId);
+
+  localStorage.setItem("movieNominees", JSON.stringify(movieNominees));
+
+  // movie.classList.add("remove");
+  // nominationList.removeChild(movie);
+
+  setTimeout(() => nominationList.removeChild(movie), 300);
+  // enable button in results
+  let movieButton = moviesList.querySelector(
+    `.movie-item[data-imdb-id="${imdbId}"] button`
+  );
+
+  if (movieButton) {
+    movieButton.disabled = false;
+    movieButton.innerText = "Nominate";
+  }
+  updateNomineesLeft();
+};
+
 const nominate = (e) => {
   if (movieNominees.length >= 5) {
     // return showBanner("You can only nominate five movies.", "red");
     alert("You can only nominate five movies.");
+    return;
   }
 
   const movie = e.closest(".movie-item");
-  const { title, imdbId, year } = movie.dataset;
+  const { title, imdbId, year, type } = movie.dataset;
   const imgSrc = movie.querySelector("img")
     ? movie.querySelector("img").src
     : "";
@@ -32,7 +100,7 @@ const nominate = (e) => {
   if (
     movieNominees.filter((nominee) => nominee.imdbId === imdbId).length === 0
   ) {
-    movieNominees.push({ title, imdbId, year, imgSrc });
+    movieNominees.push({ title, imdbId, year, type, imgSrc });
     localStorage.setItem("movieNominees", JSON.stringify(movieNominees));
 
     let movieClone = movie.cloneNode(true);
@@ -47,9 +115,7 @@ const nominate = (e) => {
     e.disabled = true;
   }
 
-  // if (!movieNominees.length) nomineeInfo.classList.add("empty");
-  // updateNomineesLeft();
-  console.log("updated nominee");
+  updateNomineesLeft();
 };
 
 const ifNominated = (movieId) => {
@@ -67,6 +133,7 @@ const searchMovie = async (e) => {
     }, 5000);
     return;
   }
+
   spinner.classList.add("show");
 
   try {
@@ -86,7 +153,7 @@ const searchMovie = async (e) => {
         const { Title, Year, imdbID, Poster, Type } = movie;
 
         movieItem += `
-          <li class="movie-item" data-title="${Title}" data-year="${Year}" data-imdb-id="${imdbID}">
+          <li class="movie-item" data-title="${Title}" data-year="${Year}" data-imdb-id="${imdbID}" data-type="${Type}">
           ${Poster === "N/A" ? "" : `<img src="${Poster}" alt="${Title}"/>`}
             <div class="movie-content">
               <div class="movie-content-info">
@@ -105,8 +172,8 @@ const searchMovie = async (e) => {
       moviesInfo.innerText = `Results for "${searchTerm}".`;
       moviesList.innerHTML = movieItem;
     } else {
-      moviesList.innerHTML = "";
       moviesInfo.innerText = `No results for "${searchTerm}" found`;
+      moviesList.innerHTML = "";
     }
   } catch (error) {
     console.log(error);
