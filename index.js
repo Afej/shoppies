@@ -25,8 +25,13 @@ const updateNomineesLeft = () => {
       5 - movieNominees.length
     } nomination${5 - movieNominees.length !== 1 ? "s" : ""} left.
     <button class="toggle-btn" onclick="toggleShow()">
-    View
-    <i class="fas fa-angle-double-down"></i>
+    ${
+      !nominationList.classList.contains("show-nominees")
+        ? `View
+    <i class="fas fa-angle-double-down"></i>`
+        : `Close <i class="fas fa-angle-double-up"></i>`
+    }
+    
     </button>
     `;
 
@@ -103,6 +108,7 @@ const removeNomination = (e) => {
     movieButton.disabled = false;
     movieButton.innerText = "Nominate";
   }
+
   updateNomineesLeft();
 };
 
