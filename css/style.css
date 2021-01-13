@@ -10,8 +10,7 @@ body {
   background-size: cover;
   color: #ffffff;
   height: 100%;
-  min-height: 100vh;
-  overflow: scroll;
+  overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
   scroll-behavior: smooth;
 }
@@ -23,19 +22,18 @@ ul {
 .banner {
   position: fixed;
   top: 0;
-  left: 0;
   right: 0;
   min-height: 1.5rem;
   height: max-content;
   width: 100vw;
-  background-color: #4ac774;
+  background-color: #29658dee;
   color: #ffffff;
   display: flex;
   justify-content: center;
   align-items: center;
   transform: translateY(0);
   transition: all 0.3s ease-in-out;
-  z-index: 2;
+  z-index: 20;
 }
 
 .banner p {
@@ -115,7 +113,7 @@ header {
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  margin: 30px 0;
+  margin: 50px 0;
   padding: 20px;
 }
 

@@ -4,7 +4,6 @@ const closeBannerBtn = document.querySelector("#closeBannerBtn");
 
 const form = document.querySelector("form");
 const search = document.querySelector("#search");
-// const submitBtn = document.querySelector("#submitBtn");
 
 const spinner = document.querySelector("#spinner");
 const moviesInfo = document.querySelector("#movies-info");
@@ -16,10 +15,24 @@ const nomineesContainer = document.querySelector(".nominees-container");
 
 let movieNominees = JSON.parse(localStorage.getItem("movieNominees")) || [];
 
+/////////////////////////
+//// Show Alert function ////
+////////////////////////
+const showAlert = (text, color, timeout = 5000) => {
+  bannerText.innerText = text;
+  banner.style.backgroundColor = color;
+  bannerText.innerText = text;
+  banner.classList.remove("hidden");
+
+  setTimeout(() => {
+    banner.classList.add("hidden");
+  }, timeout);
+};
+
 //////////////////////////////////////////////////
 //// function to keep nomination list updated ////
 //////////////////////////////////////////////////
-const updateNomineesLeft = () => {
+const updateNomineesLeft = (populateFromLs = false) => {
   if (movieNominees.length) {
     nominationInfo.innerHTML = `You have ${
       5 - movieNominees.length
@@ -36,8 +49,9 @@ const updateNomineesLeft = () => {
     `;
 
     if (movieNominees.length === 5) {
-      alert("You have selected five movies. Thank you!");
-      // showBanner("You have selected five movies. Thank you!");
+      populateFromLs
+        ? showAlert("Nominations Complete, thank you!", "#29658dee")
+        : showAlert("You have selected five movies. Thank you!");
     }
   } else {
     nominationInfo.innerText = "Search movies and add your nominations.";
@@ -60,7 +74,7 @@ const toggleShow = () => {
 /////////////////////////////////////////////////////////////////////
 const fillNominationList = () => {
   let html = ``;
-  updateNomineesLeft();
+  updateNomineesLeft(true);
 
   movieNominees.forEach((movie) => {
     const { title, imdbId, year, type, imgSrc } = movie;
@@ -117,9 +131,7 @@ const removeNomination = (e) => {
 //////////////////////////////////////
 const nominate = (e) => {
   if (movieNominees.length >= 5) {
-    // return showBanner("You can only nominate five movies.", "red");
-    alert("You can only nominate five movies.");
-    return;
+    return showAlert("You can only nominate five movies.", "#e95f53f8");
   }
 
   const movie = e.closest(".movie-item");
@@ -220,3 +232,7 @@ const searchMovie = async (e) => {
 //// Event listeners ////
 /////////////////////////
 form.addEventListener("submit", searchMovie);
+
+closeBannerBtn.addEventListener("click", (e) => {
+  banner.classList.add("hidden");
+});
