@@ -45,6 +45,7 @@ body {
   color: #ffffff;
   height: 100%;
   min-height: 100vh;
+  scroll-behavior: smooth;
 }
 
 ul {
@@ -186,6 +187,10 @@ main {
 
     & #nomination-list {
       display: none;
+
+      &.show-nominees {
+        display: block;
+      }
     }
   }
 
@@ -244,6 +249,7 @@ main {
       grid-row: 1;
       z-index: 10;
       opacity: 1;
+      box-shadow: none;
     }
   }
 
@@ -264,6 +270,28 @@ main {
   #movies-info,
   #nomination-info {
     margin: 8px 0;
+  }
+
+  #nomination-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .toggle-btn {
+      display: none;
+      @include button();
+      padding: 0.5rem;
+      box-shadow: 0px 4px 2px 0 #000;
+
+      i {
+        margin-left: 5px;
+      }
+
+      @media (max-width: 768px) {
+        display: block;
+        width: 25% !important;
+      }
+    }
   }
 
   .movie-item {

@@ -16,11 +16,19 @@ const nomineesContainer = document.querySelector(".nominees-container");
 
 let movieNominees = JSON.parse(localStorage.getItem("movieNominees")) || [];
 
+//////////////////////////////////////////////////
+//// function to keep nomination list updated ////
+//////////////////////////////////////////////////
 const updateNomineesLeft = () => {
   if (movieNominees.length) {
-    nominationInfo.innerText = `You have ${
+    nominationInfo.innerHTML = `You have ${
       5 - movieNominees.length
-    } nomination${5 - movieNominees.length !== 1 ? "s" : ""} left.`;
+    } nomination${5 - movieNominees.length !== 1 ? "s" : ""} left.
+    <button class="toggle-btn" onclick="toggleShow()">
+    View
+    <i class="fas fa-angle-double-down"></i>
+    </button>
+    `;
 
     if (movieNominees.length === 5) {
       alert("You have selected five movies. Thank you!");
@@ -31,6 +39,20 @@ const updateNomineesLeft = () => {
   }
 };
 
+const toggleShow = () => {
+  nominationList.classList.toggle("show-nominees");
+  let viewButton = nominationInfo.querySelector("button");
+
+  if (nominationList.classList.contains("show-nominees")) {
+    viewButton.innerHTML = `Close <i class="fas fa-angle-double-up"></i>`;
+  } else {
+    viewButton.innerHTML = `View <i class="fas fa-angle-double-down"></i>`;
+  }
+};
+
+/////////////////////////////////////////////////////////////////////
+//// populating the nomination list with data from local storage ////
+/////////////////////////////////////////////////////////////////////
 const fillNominationList = () => {
   let html = ``;
   updateNomineesLeft();
@@ -58,6 +80,9 @@ const fillNominationList = () => {
 
 fillNominationList();
 
+////////////////////////////////////
+//// remove a movie nomination ////
+///////////////////////////////////
 const removeNomination = (e) => {
   // hideBanner();
   const movie = e.closest(".movie-item");
@@ -67,10 +92,8 @@ const removeNomination = (e) => {
 
   localStorage.setItem("movieNominees", JSON.stringify(movieNominees));
 
-  // movie.classList.add("remove");
-  // nominationList.removeChild(movie);
-
   setTimeout(() => nominationList.removeChild(movie), 300);
+
   // enable button in results
   let movieButton = moviesList.querySelector(
     `.movie-item[data-imdb-id="${imdbId}"] button`
@@ -83,6 +106,9 @@ const removeNomination = (e) => {
   updateNomineesLeft();
 };
 
+//////////////////////////////////////
+//// function to nominate a movie ////
+//////////////////////////////////////
 const nominate = (e) => {
   if (movieNominees.length >= 5) {
     // return showBanner("You can only nominate five movies.", "red");
@@ -118,10 +144,14 @@ const nominate = (e) => {
   updateNomineesLeft();
 };
 
+// checks if a movie has already been nominated
 const ifNominated = (movieId) => {
   return movieNominees.filter((movie) => movie.imdbId === movieId).length === 1;
 };
 
+/////////////////////////////////////
+//// Search function to Imdb api ////
+/////////////////////////////////////
 const searchMovie = async (e) => {
   e.preventDefault();
   let searchTerm = search.value.trim();
@@ -180,4 +210,7 @@ const searchMovie = async (e) => {
   }
 };
 
+//////////////////////////
+//// Event listeners ////
+/////////////////////////
 form.addEventListener("submit", searchMovie);
