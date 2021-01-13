@@ -167,7 +167,7 @@ const searchMovie = async (e) => {
   spinner.classList.add("show");
 
   try {
-    const response = await axios.get("http://www.omdbapi.com/", {
+    const response = await axios.get("https://www.omdbapi.com/", {
       params: {
         apikey: "f669b4b1",
         s: searchTerm,
