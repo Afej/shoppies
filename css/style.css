@@ -100,7 +100,7 @@ ul {
 @media (max-width: 576px) {
   .banner button {
     width: max-content;
-    right: 0.5rem;
+    right: 1.2rem;
   }
 }
 
