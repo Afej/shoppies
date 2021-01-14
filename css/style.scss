@@ -46,7 +46,6 @@ body {
   height: 100%;
   min-height: 100vh;
   overflow-y: scroll;
-  -webkit-overflow-scrolling: touch;
   scroll-behavior: smooth;
 }
 
@@ -85,10 +84,9 @@ ul {
 
   button {
     @include button();
-    height: 2rem;
-    padding: 0.5rem 1rem;
-    justify-self: end;
     position: absolute;
+    height: 2rem;
+    padding: 0.5rem;
     top: 50%;
     right: 2rem;
     transform: translate(0, -50%);
@@ -96,8 +94,7 @@ ul {
     color: white;
     box-shadow: none;
     border: 2px solid #ffffff;
-    display: flex;
-    align-items: center;
+    // text-align: center;
 
     @media (max-width: 576px) {
       width: max-content;
@@ -186,7 +183,7 @@ main {
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
 
-    & #nomination-list {
+    #nomination-list {
       display: none;
 
       &.show-nominees {
@@ -238,7 +235,7 @@ main {
 
   .nomination-container {
     position: sticky;
-    top: 3%;
+    top: 2%;
     background: rgb(100, 73, 73);
     opacity: 0.9;
     padding: 20px 15px;
@@ -301,8 +298,8 @@ main {
 
   .movie-item {
     display: flex;
-    padding: 1rem 0;
-    margin: 1rem 0;
+    padding: 0.5rem 0;
+    margin: 1rem 0 0 0;
     gap: 1rem;
     transition: all 0.5s ease-in;
 
